@@ -16,8 +16,10 @@ const useStore = create((set) => ({
 
 const FilterInput = () => {
   const filter = useStore((state) => state.filter);
+  const setFilter = useStore((state) => state.setFilter);
+
   return (
-    <input value={filter} />
+    <input value={filter} onChange={(e) => setFilter(e.target.value)} />
   )
 }
 
