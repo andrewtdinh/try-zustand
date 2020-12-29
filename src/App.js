@@ -14,9 +14,18 @@ const useStore = create((set) => ({
   })),
 }))
 
+const FilterInput = () => {
+  const filter = useStore((state) => state.filter);
+  return (
+    <input value={filter} />
+  )
+}
+
 function App() {
   return (
     <div className="App">
+      <div>
+      </div>
     </div>
   );
 }
