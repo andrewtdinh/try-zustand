@@ -28,10 +28,26 @@ const FilterInput = () => {
   )
 }
 
+const PokemonTable = () => {
+  const pokemon = useStore((state) => state.pokemon);
+
+  return (
+    <table width="100%">
+      <tbody>
+        {pokemon.map(({ id, name: { english }, type }) => (
+          <tr key={id}>
+            <td>{english}</td>
+            <td>{type.join(', ')}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 function App() {
   const filter = useStore((state) => state.filter);
   const setPokemon = useStore((state) => state.setPokemon);
-  const pokemon = useStore((state) => state.pokemon);
 
   React.useEffect(() => {
     fetch(POKEMON_URL)
@@ -45,7 +61,6 @@ function App() {
         <FilterInput /> 
       </div>
       {filter}
-      {JSON.stringify(pokemon)}
     </div>
   );
 }
