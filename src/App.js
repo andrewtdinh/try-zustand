@@ -49,7 +49,6 @@ const PokemonTable = () => {
 }
 
 function App() {
-  const filter = useStore((state) => state.filter);
   const setPokemon = useStore((state) => state.setPokemon);
 
   React.useEffect(() => {
@@ -63,7 +62,7 @@ function App() {
       <div>
         <FilterInput /> 
       </div>
-      {filter}
+      <h1>List of Pokemon:</h1>
       <PokemonTable />
     </div>
   );
