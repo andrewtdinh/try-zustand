@@ -1,5 +1,10 @@
 import './App.css';
+import React from 'react';
 import create from 'zustand';
+
+const POKEMON_URL = 
+  'https://gist.githubusercontent.com/jherr/23ae3f96cf5ac341c98cd9aa164d2fe3/raw/f8d792f5b2cf97eaaf9f0c2119918f333e348823/pokemon.json';
+
 
 const useStore = create((set) => ({
   filter: '',
@@ -24,11 +29,23 @@ const FilterInput = () => {
 }
 
 function App() {
+  const filter = useStore((state) => state.filter);
+  const setPokemon = useStore((state) => state.setPokemon);
+  const pokemon = useStore((state) => state.pokemon);
+
+  React.useEffect(() => {
+    fetch(POKEMON_URL)
+      .then((resp) => resp.json())
+      .then((pokemon) => setPokemon(pokemon))
+  }, []);
+
   return (
     <div className="App">
       <div>
         <FilterInput /> 
       </div>
+      {filter}
+      {JSON.stringify(pokemon)}
     </div>
   );
 }
