@@ -61,6 +61,7 @@ function App() {
         <FilterInput /> 
       </div>
       {filter}
+      <PokemonTable />
     </div>
   );
 }
